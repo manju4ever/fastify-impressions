@@ -1,0 +1,19 @@
+{
+  "name": "fastify-impressions",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "tap plugin.spec.js --cov --coverage-report=lcovonly"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "fastify": "^3.27.2",
+    "fastify-plugin": "^3.0.1"
+  },
+  "devDependencies": {
+    "tap": "^16.0.0"
+  }
+}
