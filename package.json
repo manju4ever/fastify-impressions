@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "tap plugin.spec.js --cov --coverage-report=lcovonly"
+    "test": "tap plugin.spec.js --no-coverage",
+    "test:cov": "tap plugin.spec.js --coverage-report=lcovonly"
   },
   "keywords": [],
   "author": "",
