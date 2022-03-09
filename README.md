@@ -23,4 +23,9 @@ const fastifyImpressions = require("fastify-impressions");
 
 fastify.register("fastifyImpressions").catch(console.error);
 
+
+fastify.listen(8080, (err, address) => {
+    console.debug("Server started at:", address);
+})
+
 ```
