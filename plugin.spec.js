@@ -1,6 +1,8 @@
 const { test } = require("tap");
 const plugin = require("./");
 
+const RESULTS_URL = "/fastify-impressions";
+
 test("Plugin Registration Check", (t) => {
   return t.resolves(require("fastify")().register(plugin));
 });
@@ -16,7 +18,7 @@ test("Check impression counts for index route", async (t) => {
     });
     const res = await app.inject({
       method: "GET",
-      path: "/fastify-impressions/json",
+      path: RESULTS_URL,
     });
     t.equal(res.json()["/"], 1);
   });
@@ -27,7 +29,7 @@ test("Check impression counts for index route", async (t) => {
     });
     const res = await app.inject({
       method: "GET",
-      url: "/fastify-impressions/json",
+      url: RESULTS_URL,
     });
     t.equal(res.json()["/"], 2);
   });
@@ -41,7 +43,7 @@ test("Check impressions for parameterized routes", async (t) => {
   });
   const res = await app.inject({
     method: "GET",
-    path: "/fastify-impressions/json",
+    path: RESULTS_URL,
   });
   t.notOk(res.json()["/"]);
   t.equal(res.json()["/profile/manju"], 1);
@@ -65,9 +67,42 @@ test("Multiple hits on the parameterized routes", async (t) => {
   ]);
   const res2 = await app.inject({
     method: "GET",
-    path: "/fastify-impressions/json",
+    path: RESULTS_URL,
   });
-  console.log(res2.json());
   t.match(res2.json()["/profile/manju"], 2);
   t.match(res2.json()["/"], 1);
+});
+
+test("The impression count URL should not be tracked", async (t) => {
+  const server = require("./server")({ logger: false });
+
+  const req1 = server.inject({
+    method: "GET",
+    url: "/",
+  });
+  const res = await server.inject({
+    method: "GET",
+    url: RESULTS_URL,
+  });
+
+  t.notOk(res.json()[RESULTS_URL]);
+});
+
+test("Add a new route and blacklist the same", async (t) => {
+  const server = require("./server")({
+    logger: false,
+    blacklist: ["/notrack"],
+  });
+  server.get("/notrack", (req, reply) => {
+    return reply("Not to be tracked !");
+  });
+  const req1 = server.inject({
+    method: "GET",
+    url: "/notrack",
+  });
+  const res = await server.inject({
+    method: "GET",
+    url: RESULTS_URL,
+  });
+  t.notOk(res.json()["/notrack"]);
 });

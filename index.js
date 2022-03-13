@@ -1,8 +1,10 @@
 const fp = require("fastify-plugin");
 
-const impressioner = (
-  config = { blacklist: ["/favicon.ico", "/fastify-impressions/json"] }
-) => {
+const defaultOptions = {
+  blacklist: ["/favicon.ico", "/fastify-impressions"],
+};
+
+const impressioner = (config = { blacklist: defaultBlacklist }) => {
   const { blacklist } = config;
   let tracker = {};
   function hit(url) {
@@ -25,7 +27,11 @@ const impressioner = (
 
 function FastifyImpressions(instance, options, done) {
   try {
-    const counter = impressioner();
+    let freshOptions;
+    if (!!options) {
+      freshOptions = Object.assign({}, defaultOptions, options);
+    }
+    const counter = impressioner(freshOptions);
     // Add a hook to count impressions
     instance.addHook("onResponse", (request, reply, done) => {
       counter.hit(reply.request.url);
@@ -33,7 +39,7 @@ function FastifyImpressions(instance, options, done) {
     });
 
     // Add a route to get impressions as json
-    instance.get("/fastify-impressions/json", (request, reply) => {
+    instance.get("/fastify-impressions", (request, reply) => {
       return reply.send(counter.get());
     });
     done();

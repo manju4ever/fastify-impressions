@@ -3,7 +3,7 @@ const fastify = require("fastify");
 module.exports = function build(opts) {
   const app = fastify(opts);
 
-  app.register(require("./"));
+  app.register(require("./", opts));
 
   app.get("/", (req, reply) => reply.send("hello"));
 
