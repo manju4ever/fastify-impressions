@@ -9,7 +9,7 @@
     "track impressions"
   ],
   "author": "Manjunath Desappa",
-  "license": "ISC",
+  "license": "MIT",
   "main": "index.js",
   "scripts": {
     "doc": "markdown-toc -i README.md",

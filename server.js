@@ -1,14 +1,15 @@
-const fastify = require("fastify");
+const fastify = require('fastify')
+const plugin = require('./')
 
-module.exports = function build(opts) {
-  const app = fastify(opts);
+module.exports = function build (fastifyOpts = {}, fastifyImpressionOpts = {}) {
+  const app = fastify(fastifyOpts)
 
-  app.register(require("./", opts));
+  app.register(plugin, fastifyImpressionOpts)
 
-  app.get("/", (req, reply) => reply.send("hello"));
+  app.get('/', (req, reply) => reply.send('hello'))
 
-  app.get("/profile/:name", (req, reply) =>
+  app.get('/profile/:name', (req, reply) =>
     reply.send(`Hello ${req.params.name}`)
-  );
-  return app;
-};
+  )
+  return app
+}

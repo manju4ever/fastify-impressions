@@ -2,12 +2,7 @@
 
 [![fastify-impressions](https://github.com/manju4ever/fastify-impressions/actions/workflows/testing.js.yml/badge.svg?branch=main)](https://github.com/manju4ever/fastify-impressions/actions/workflows/testing.js.yml)
 
-## Plugin to track impressions based on route
-
-<!-- toc -->
-
-- [Install](#install)
-- [Usage](#usage)
+> Plugin to track impressions based on route(s)
 
 ## Install
 
@@ -33,3 +28,7 @@ fastify.listen(8080, (err, address) => {
 ```
 
 To see the impressions of the respective routes, access the `/fastify-impressions`, and this should return a JSON response
+
+## License
+
+Licensed under MIT
