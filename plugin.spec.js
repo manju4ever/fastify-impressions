@@ -46,3 +46,28 @@ test("Check impressions for parameterized routes", async (t) => {
   t.notOk(res.json()["/"]);
   t.equal(res.json()["/profile/manju"], 1);
 });
+
+test("Multiple hits on the parameterized routes", async (t) => {
+  const app = require("./server")({ logger: false });
+  await Promise.all([
+    app.inject({
+      method: "GET",
+      url: "/profile/manju",
+    }),
+    app.inject({
+      method: "GET",
+      url: "/profile/manju",
+    }),
+    app.inject({
+      method: "GET",
+      url: "/",
+    }),
+  ]);
+  const res2 = await app.inject({
+    method: "GET",
+    path: "/fastify-impressions/json",
+  });
+  console.log(res2.json());
+  t.match(res2.json()["/profile/manju"], 2);
+  t.match(res2.json()["/"], 1);
+});
