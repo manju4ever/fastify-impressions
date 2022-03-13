@@ -1,20 +1,39 @@
 {
   "name": "fastify-impressions",
   "version": "1.0.0",
+  "description": "A fastify plugin to track impression of routes",
+  "keywords": [
+    "fastify",
+    "node",
+    "fastify plugin",
+    "track impressions"
+  ],
+  "author": "Manjunath Desappa",
+  "license": "ISC",
   "main": "index.js",
   "scripts": {
-    "test": "tap plugin.spec.js --no-coverage",
-    "test:cov": "tap plugin.spec.js --coverage-report=lcovonly"
+    "doc": "markdown-toc -i README.md",
+    "lint": "standard --fix | snazzy",
+    "test": "tap plugin.spec.js",
+    "test:ci": "npm run test -- --cov --coverage-report=lcovonly",
+    "test:coverage": "npm test -- --coverage-report=html",
+    "prerelease": "npm cit",
+    "release": "HUSKY=0 standard-version",
+    "postrelease": "npm run push && npm publish",
+    "prenext": "npm cit",
+    "next": "HUSKY=0 standard-version --prerelease",
+    "postnext": "npm run push && npm publish --tag next",
+    "push": "git push origin --follow-tags `git rev-parse --abbrev-ref HEAD`",
+    "prepare": "husky install"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "dependencies": {
     "fastify": "^3.27.2",
     "fastify-plugin": "^3.0.1"
   },
   "devDependencies": {
     "tap": "^16.0.0"
+  },
+  "tap": {
+    "check-coverage": false
   }
 }
