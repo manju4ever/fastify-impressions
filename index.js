@@ -40,7 +40,9 @@ function FastifyImpressions(instance, options, done) {
 
     // Add a route to get impressions as json
     instance.get("/fastify-impressions", (request, reply) => {
-      return reply.send(counter.get());
+      return reply
+        .header("Content-Type", "application/json")
+        .send(counter.get());
     });
     done();
   } catch (err) {
