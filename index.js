@@ -50,4 +50,7 @@ function FastifyImpressions(instance, options, done) {
   }
 }
 
-module.exports = fp(FastifyImpressions);
+module.exports = fp(FastifyImpressions, {
+  fastify: "3.x",
+  name: "fastify-impressions",
+});
