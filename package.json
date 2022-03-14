@@ -9,6 +9,10 @@
     "track impressions"
   ],
   "author": "Manjunath Desappa",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/manju4ever/fastify-impressions.git"
+  },
   "license": "ISC",
   "main": "index.js",
   "scripts": {
