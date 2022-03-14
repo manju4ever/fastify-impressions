@@ -3,3 +3,6 @@ node_modules/
 .history
 .nyc_output/
 coverage/
+.demo.js.icloud
+.husky
+demo.js

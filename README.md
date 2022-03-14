@@ -4,6 +4,15 @@
 
 > Plugin to track impressions based on route(s)
 
+<!-- toc -->
+
+- [Install](#install)
+- [Usage](#usage)
+- [Plugin Options](#plugin-options)
+- [License](#license)
+
+<!-- tocstop -->
+
 ## Install
 
 ```bash
@@ -29,6 +38,13 @@ fastify.listen(8080, (err, address) => {
 
 To see the impressions of the respective routes, access the `/fastify-impressions`, and this should return a JSON response
 
+## Plugin Options
+
+- `blacklist` `<Array>`
+  - A list of URL's that should not be tracked
+- `trackSuccessOnly` `<Boolean>`
+  - Enable this flag to track success responses only (200 series)
+
 ## License
 
-Licensed under MIT
+Licensed under ISC
