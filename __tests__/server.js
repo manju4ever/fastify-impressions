@@ -1,5 +1,5 @@
 const fastify = require("fastify");
-const plugin = require("./");
+const plugin = require("../");
 
 module.exports = function build(fastifyOpts = {}, fastifyImpressionOpts = {}) {
   const app = fastify(fastifyOpts);

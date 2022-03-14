@@ -18,7 +18,7 @@
   "scripts": {
     "doc": "markdown-toc -i README.md",
     "lint": "standard --fix | snazzy",
-    "test": "tap plugin.spec.js",
+    "test": "tap __tests__/plugin.spec.js",
     "test:ci": "npm run test -- --cov --coverage-report=lcovonly",
     "test:coverage": "npm test -- --coverage-report=html",
     "prerelease": "npm cit",
@@ -30,10 +30,10 @@
     "push": "git push origin --follow-tags `git rev-parse --abbrev-ref HEAD`"
   },
   "dependencies": {
-    "fastify": "^3.27.2",
     "fastify-plugin": "^3.0.1"
   },
   "devDependencies": {
+    "fastify": "^3.27.2",
     "husky": "^7.0.4",
     "tap": "^16.0.0"
   },

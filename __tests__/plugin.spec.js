@@ -1,5 +1,6 @@
 const { test } = require("tap");
-const plugin = require("./");
+const plugin = require("../");
+const DemoServer = require("./server");
 
 const RESULTS_URL = "/fastify-impressions";
 
@@ -8,7 +9,7 @@ test("Plugin Registration Check", (t) => {
 });
 
 test("Check impression counts for index route", async (t) => {
-  const app = require("./server")({
+  const app = DemoServer({
     logger: false,
   });
   test("Single hit of index route", async (t) => {
@@ -36,7 +37,7 @@ test("Check impression counts for index route", async (t) => {
 });
 
 test("Check impressions for parameterized routes", async (t) => {
-  const app = require("./server")({ logging: false });
+  const app = DemoServer({ logging: false });
   await app.inject({
     method: "GET",
     url: "/profile/manju",
@@ -50,7 +51,7 @@ test("Check impressions for parameterized routes", async (t) => {
 });
 
 test("Multiple hits on the parameterized routes", async (t) => {
-  const app = require("./server")({ logger: false });
+  const app = DemoServer({ logger: false });
   await Promise.all([
     app.inject({
       method: "GET",
@@ -74,7 +75,7 @@ test("Multiple hits on the parameterized routes", async (t) => {
 });
 
 test("The impression count URL should not be tracked", async (t) => {
-  const server = require("./server")({ logger: false });
+  const server = DemoServer({ logger: false });
 
   await server.inject({
     method: "GET",
@@ -89,7 +90,7 @@ test("The impression count URL should not be tracked", async (t) => {
 });
 
 test("Add a new route and blacklist the same", async (t) => {
-  const server = require("./server")(
+  const server = DemoServer(
     {
       logger: false,
     },
@@ -112,7 +113,7 @@ test("Add a new route and blacklist the same", async (t) => {
 });
 
 test("Check count for success response and ignore error routes", async (t) => {
-  const server = require("./server")(
+  const server = DemoServer(
     {
       logger: false,
     },
