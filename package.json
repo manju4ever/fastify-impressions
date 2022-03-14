@@ -23,14 +23,14 @@
     "prenext": "npm cit",
     "next": "HUSKY=0 standard-version --prerelease",
     "postnext": "npm run push && npm publish --tag next",
-    "push": "git push origin --follow-tags `git rev-parse --abbrev-ref HEAD`",
-    "prepare": "husky install"
+    "push": "git push origin --follow-tags `git rev-parse --abbrev-ref HEAD`"
   },
   "dependencies": {
     "fastify": "^3.27.2",
     "fastify-plugin": "^3.0.1"
   },
   "devDependencies": {
+    "husky": "^7.0.4",
     "tap": "^16.0.0"
   },
   "tap": {
