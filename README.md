@@ -5,11 +5,11 @@
 > Plugin to track impressions based on route(s)
 
 <!-- toc -->
-
-- [Install](#install)
-- [Usage](#usage)
-- [Plugin Options](#plugin-options)
-- [License](#license)
+- [fastify-impressions](#fastify-impressions)
+  - [Install](#install)
+  - [Usage](#usage)
+  - [Plugin Options](#plugin-options)
+  - [License](#license)
 
 <!-- tocstop -->
 
@@ -28,6 +28,7 @@ const fastifyImpressions = require("fastify-impressions");
 fastify
   .register("fastifyImpressions", {
     blacklist: [], // specify URL's that are not to be tracked
+    trackSuccessOnly: false // track only success responses
   })
   .catch(console.error);
 
