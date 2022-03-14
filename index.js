@@ -5,11 +5,11 @@ const defaultOptions = {
   trackSuccessOnly: false,
 };
 
-const impressioner = (config) => {
-  const { blacklist } = config;
+const impressioner = (config = { blacklist: [] }) => {
+  const blacklistMap = new Map(config.blacklist.map((key) => [key, true]));
   const tracker = {};
   function hit(url) {
-    if (blacklist.indexOf(url) > -1) return false;
+    if (blacklistMap.has(url)) return false;
     if (!tracker[url]) {
       tracker[url] = 1;
     } else {
@@ -51,7 +51,7 @@ function FastifyImpressions(instance, options, done) {
     });
     done();
   } catch (err) {
-    return err;
+    return done(err);
   }
 }
 
