@@ -1,6 +1,6 @@
 {
   "name": "fastify-impressions",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A fastify plugin to track impression of routes",
   "keywords": [
     "fastify",
