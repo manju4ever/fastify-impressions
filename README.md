@@ -1,6 +1,9 @@
 # fastify-impressions
 
+[![npm version](https://badge.fury.io/js/fastify-impressions.svg)](https://badge.fury.io/js/fastify-impressions)
 [![fastify-impressions](https://github.com/manju4ever/fastify-impressions/actions/workflows/testing.js.yml/badge.svg?branch=main)](https://github.com/manju4ever/fastify-impressions/actions/workflows/testing.js.yml)
+![Known Vulnerabilities](https://snyk.io/test/github/manju4ever/fastify-impressions/badge.svg)
+
 
 > Plugin to track impressions based on route(s)
 
